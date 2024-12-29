@@ -19,7 +19,7 @@ const EmployeeLeaves = () => {
 
             try {
                
-                const profileRes = await axios.get("http://localhost:8080/api/emp/profile", {
+                const profileRes = await axios.get("http://localhost:9246/api/emp/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -34,7 +34,7 @@ const EmployeeLeaves = () => {
 
                
                 setLoading(true);
-                const leavesRes = await axios.get(`http://localhost:8080/api/emp/leaves/${empId}`, {
+                const leavesRes = await axios.get(`http://localhost:9246/api/emp/leaves/${empId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -57,6 +57,8 @@ const EmployeeLeaves = () => {
         <div className="min-h-screen bg-gray-100 py-8 flex flex-col items-center">
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">My Leaves</h2>
+                <h3 className="text-1xl font-semibold text-gray-800 mb-6 text-center">Leaves left for current year: </h3>
+
 
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
@@ -97,7 +99,7 @@ const EmployeeLeaves = () => {
                                 ) : (
                                     <tr>
                                         <td colSpan="4" className="px-4 py-2 border border-gray-300 text-center">
-                                            No leaves available.
+                                            No leave history to show.
                                         </td>
                                     </tr>
                                 )}

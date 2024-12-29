@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { useNavigate } from "react-router-dom";
-import { FaTrashAlt } from "react-icons/fa"; 
-import { message, Modal } from "antd"; 
+import { FaTrashAlt } from "react-icons/fa";
+import { message, Modal } from "antd";
+import applogo from "../images/applogo.png";
+import { Link } from "react-router-dom";
 import Signup from "../components/Signup";
 
 const GetAllUserData = () => {
@@ -30,7 +32,7 @@ const GetAllUserData = () => {
         }
 
         axios
-            .get("http://localhost:8080/api/admin_getUserData", {
+            .get("http://localhost:9246/api/admin_getUserData", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -56,7 +58,7 @@ const GetAllUserData = () => {
     const handleDelete = () => {
         const token = localStorage.getItem("token");
         axios
-            .delete(`http://localhost:8080/api/admin_removeUser/${selectedUserId}`, {
+            .delete(`http://localhost:9246/api/admin_removeUser/${selectedUserId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -91,8 +93,11 @@ const GetAllUserData = () => {
 
     return (
         <div className="overflow-x-auto p-4">
+            <Link to="/" className="absolute top-5 left-50 ">
+                <img src={applogo} className="h-8" alt="EasyPay Logo" /><br />
+            </Link>
             <div className="flex justify-between items-center mb-5">
-                <h2 className="text-2xl font-bold">Users Data</h2>
+                <br /><h2 className="text-2xl font-bold">Users Data</h2>
                 <button
                     className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
                     onClick={() => navigate("/signup")}

@@ -16,7 +16,7 @@ const PayrollAuditLogs = () => {
             return;
         }
 
-        axios.get('http://localhost:8080/api/payroll/audit', {
+        axios.get('http://localhost:9246/api/payroll/audit', {
             headers: {
                 'Authorization': `Bearer ${token}`,
             }

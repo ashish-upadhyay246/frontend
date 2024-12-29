@@ -26,7 +26,7 @@ const UpdatePayroll = () => {
 
     setIsLoading(true);
     axios
-      .put(`http://localhost:8080/api/payroll/update_payroll/${formData.payrollId}`, formData, { headers })
+      .put(`http://localhost:9246/api/payroll/update_payroll/${formData.payrollId}`, formData, { headers })
       .then(() => {
         setSuccessMessage('Payroll updated successfully.');
         setError('');

@@ -19,7 +19,7 @@ const EmployeePayroll = () => {
             }
 
             try {
-                const res = await axios.get("http://localhost:8080/api/emp/profile", {
+                const res = await axios.get("http://localhost:9246/api/emp/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -47,7 +47,7 @@ const EmployeePayroll = () => {
         try {
             const token = localStorage.getItem("token");
             const response = await axios.get(
-                `http://localhost:8080/api/payroll/get_payrollByEmployeeId/${profileData.empId}`,
+                `http://localhost:9246/api/payroll/get_payrollByEmployeeId/${profileData.empId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

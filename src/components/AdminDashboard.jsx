@@ -5,10 +5,12 @@ import GetAllEmployees from '../admin/GetAllEmployees';
 import UpdateUser from '../admin/UpdateUser';
 import UpdateEmployeeSalary from '../admin/UpdateSalary';
 import LeaveManagement from '../admin/Leaves';
+import applogo from "../images/applogo.png";
+import { Link, useNavigate } from "react-router-dom";
 import EmployeeListByDepartment from '../admin/GetByDepartment';
 import HolidayCalendarModal from '../widget/Calendar';
 import { useLocation } from 'react-router-dom';
-import { FaTachometerAlt, FaUsers, FaUserEdit, FaMoneyBillWaveAlt, FaLeaf, FaBuilding, FaUser, FaCalendarAlt } from 'react-icons/fa'; 
+import { FaTachometerAlt, FaUsers, FaUserEdit, FaMoneyBillWaveAlt, FaLeaf, FaBuilding, FaUser, FaCalendarAlt } from 'react-icons/fa';
 import ChangeDepartment from '../admin/ChangeDepartment';
 
 const AdminDashboard = () => {
@@ -19,24 +21,18 @@ const AdminDashboard = () => {
 
     return (
         <div className="flex">
-            
+
+
             <div className="min-h-screen w-64 bg-gray-900 text-white shadow-lg transition-all duration-300 ease-in-out">
                 <div className="p-6 text-lg font-bold flex items-center justify-between border-b border-gray-700">
                     <div className="flex items-center">
                         <span className="mr-2 text-xl"><FaUser className="text-xl" /></span> {username}
                     </div>
-                   
-                    <button
-                        onClick={() => setIsCalendarModalOpen(true)}
-                        className="text-xl hover:text-blue-400 transition duration-200"
-                        aria-label="Open Calendar"
-                    >
-                        <FaCalendarAlt />
-                    </button>
+
                 </div>
 
                 <ul className="mt-6">
-                   
+
                     <li
                         onClick={() => setActiveDashboard('dashboard')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'dashboard' ? 'bg-gray-800' : ''}`}
@@ -44,7 +40,7 @@ const AdminDashboard = () => {
                         <FaTachometerAlt className="mr-3 text-xl" /> Dashboard
                     </li>
 
-                    
+
                     <li
                         onClick={() => setActiveDashboard('getallemployees')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'getallemployees' ? 'bg-gray-800' : ''}`}
@@ -52,7 +48,7 @@ const AdminDashboard = () => {
                         <FaUsers className="mr-3 text-xl" /> All Employees Data
                     </li>
 
-                   
+
                     <li
                         onClick={() => setActiveDashboard('updateuser')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'updateuser' ? 'bg-gray-800' : ''}`}
@@ -68,7 +64,7 @@ const AdminDashboard = () => {
                         <FaMoneyBillWaveAlt className="mr-3 text-xl" /> Update Salary
                     </li>
 
-                    
+
                     <li
                         onClick={() => setActiveDashboard('changedepartment')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'changedepartment' ? 'bg-gray-800' : ''}`}
@@ -76,7 +72,7 @@ const AdminDashboard = () => {
                         <FaBuilding className="mr-3 text-xl" /> Change Department
                     </li>
 
-                    
+
                     <li
                         onClick={() => setActiveDashboard('leaves')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'leaves' ? 'bg-gray-800' : ''}`}
@@ -84,7 +80,7 @@ const AdminDashboard = () => {
                         <FaLeaf className="mr-3 text-xl" /> Leave Management
                     </li>
 
-                    
+
                     <li
                         onClick={() => setActiveDashboard('getbydept')}
                         className={`px-6 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out ${activeDashboard === 'getbydept' ? 'bg-gray-800' : ''}`}
@@ -92,14 +88,14 @@ const AdminDashboard = () => {
                         <FaUsers className="mr-3 text-xl" /> Employees by Department
                     </li>
 
-                    
-                    <li className="mt-2">
+
+                    <li className={`px-12 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out}`}>
                         <Logout />
                     </li>
                 </ul>
             </div>
 
-           
+
             <div className="flex-1 bg-gray-100 p-6 overflow-hidden transition-all duration-300 ease-in-out">
                 {activeDashboard === 'dashboard' && <Dashboard />}
                 {activeDashboard === 'getallemployees' && <GetAllEmployees />}
@@ -110,7 +106,7 @@ const AdminDashboard = () => {
                 {activeDashboard === 'getbydept' && <EmployeeListByDepartment />}
             </div>
 
-           
+
             {isCalendarModalOpen && (
                 <HolidayCalendarModal
                     onClose={() => setIsCalendarModalOpen(false)}

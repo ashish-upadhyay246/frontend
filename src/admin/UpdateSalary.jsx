@@ -24,7 +24,7 @@ const UpdateEmployeeSalary = () => {
 
         axios
             .put(
-                `http://localhost:8080/api/admin_updateEmployeeSalary/${employeeId}?newSalary=${newSalary}`,
+                `http://localhost:9246/api/admin_updateEmployeeSalary/${employeeId}?newSalary=${newSalary}`,
                 {},
                 {
                     headers: {

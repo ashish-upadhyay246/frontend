@@ -15,12 +15,13 @@ const Employee = () => {
             }
 
             axios
-                .get("http://localhost:8080/api/emp/profile", {
+                .get("http://localhost:9246/api/emp/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 })
                 .then((res) => {
+                    console.log(res.data);
                     setProfileData(res.data);
                     setError("");
                 })
@@ -36,16 +37,16 @@ const Employee = () => {
     return (
         <div className="min-h-screen bg-gray-100 py-8 flex flex-col items-center">
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                    Employee Profile
-                </h2>
-
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
                 {profileData ? (
                     <div className="space-y-6">
+                        <h1 style={{fontSize:"35px"}}>
+                            <center><strong className="text-gray-600">Welcome {profileData.firstName} {profileData.lastName}!</strong></center>
+                        </h1>
                         <div className="bg-gray-50 p-4 rounded-md shadow-sm">
-                            <h3 className="text-xl font-medium text-gray-700">Personal Information</h3>
+
+
                             <div className="grid grid-cols-2 gap-4 mt-4">
                                 <p>
                                     <strong className="text-gray-600">Employee ID:</strong> {profileData.empId}
@@ -69,13 +70,12 @@ const Employee = () => {
                         </div>
 
                         <div className="bg-gray-50 p-4 rounded-md shadow-sm">
-                            <h3 className="text-xl font-medium text-gray-700">Job Details</h3>
                             <div className="grid grid-cols-2 gap-4 mt-4">
                                 <p>
                                     <strong className="text-gray-600">Hire Date:</strong> {new Date(profileData.hireDate).toLocaleDateString()}
                                 </p>
                                 <p>
-                                    <strong className="text-gray-600">Department ID:</strong> {profileData.department.deptId}
+                                    <strong className="text-gray-600">Department:</strong> {profileData.department.deptName}
                                 </p>
                                 <p>
                                     <strong className="text-gray-600">User ID:</strong> {profileData.user.userId}

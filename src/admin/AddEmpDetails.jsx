@@ -12,6 +12,7 @@ const AddEmployee = ({ onEmployeeAdded }) => {
         salary: "",
         departmentId: "",
         userId: "",
+        leavesLeft: "",
     });
     const [error, setError] = useState("");
 
@@ -34,7 +35,7 @@ const AddEmployee = ({ onEmployeeAdded }) => {
         }
 
         axios
-            .post("http://localhost:8080/api/admin_addEmployeeDetails", formData, {
+            .post("http://localhost:9246/api/admin_addEmployeeDetails", formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -50,6 +51,7 @@ const AddEmployee = ({ onEmployeeAdded }) => {
                     salary: "",
                     departmentId: "",
                     userId: "",
+                    leavesLeft: "",
                 });
                 console.log(formData)
                 if (onEmployeeAdded) onEmployeeAdded();
@@ -156,6 +158,17 @@ const AddEmployee = ({ onEmployeeAdded }) => {
                         type="number"
                         name="userId"
                         value={formData.userId}
+                        onChange={handleInputChange}
+                        className="w-full p-2 border rounded"
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="block font-medium">Leaves</label>
+                    <input
+                        type="number"
+                        name="leavesLeft"
+                        value={formData.leavesLeft}
                         onChange={handleInputChange}
                         className="w-full p-2 border rounded"
                         required

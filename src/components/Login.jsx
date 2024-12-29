@@ -22,7 +22,7 @@ const Login = () => {
         setLoading(true);
         let data = { username: name, password };
         axios
-            .post("http://localhost:8080/api/login", data)
+            .post("http://localhost:9246/api/login", data)
             .then((res) => {
                 setLoading(false);
                 let token = res.data.jwt;

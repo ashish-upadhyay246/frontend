@@ -17,7 +17,7 @@ const LeaveManagement = () => {
         }
 
         axios
-            .get("http://localhost:8080/api/admin_getAllLeaves", {
+            .get("http://localhost:9246/api/admin_getAllLeaves", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -60,7 +60,7 @@ const LeaveManagement = () => {
 
         axios
             .put(
-                `http://localhost:8080/api/admin_approveRejectLeave/${leaveId}?approved=${approved}`,
+                `http://localhost:9246/api/admin_approveRejectLeave/${leaveId}?approved=${approved}`,
                 {},
                 {
                     headers: {

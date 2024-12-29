@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import AddEmployee from "./AddEmpDetails";
+import applogo from "../images/applogo.png";
+import { Link } from "react-router-dom";
 import { Modal, Button } from "antd";
 
 const GetAllEmployees = () => {
@@ -10,10 +12,10 @@ const GetAllEmployees = () => {
     const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const departments = [
-        { id: 1, name: "HR" },
-        { id: 2, name: "Finance" },
-        { id: 3, name: "Developer" },
-        { id: 4, name: "IT" },
+        { id: 1, name: "IT" },
+        { id: 2, name: "Developer" },
+        { id: 3, name: "HR" },
+        { id: 4, name: "Finance" },
         { id: 5, name: "Sales" },
     ];
 
@@ -31,7 +33,7 @@ const GetAllEmployees = () => {
         }
 
         axios
-            .get("http://localhost:8080/api/admin_getAllEmployees", {
+            .get("http://localhost:9246/api/admin_getAllEmployees", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -71,12 +73,15 @@ const GetAllEmployees = () => {
 
     return (
         <div className="overflow-x-auto p-4">
+                        <Link to="/" className="absolute top-5 left-50 ">
+                <img src={applogo} className="h-8" alt="EasyPay Logo" /><br />
+            </Link>
             <div style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
             }}>
-                <h2 className="text-2xl font-bold mb-5">Employees Data</h2>
+                <br/><h2 className="text-2xl font-bold mb-5">Employees Data</h2>
 
                 <Button
                     type="primary"
@@ -101,8 +106,9 @@ const GetAllEmployees = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {employees.map((employee, index) => {
+                    {employees && employees.map && employees.map((employee, index) => {
                         const department = departments.find(dept => dept.id === employee.departmentId);
+                        console.log(department)
                         const departmentName = department ? department.name : "Unknown";
 
                         return (

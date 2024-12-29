@@ -24,7 +24,7 @@ const CalculatePayroll = () => {
 
     setIsLoading(true);
     axios
-      .post('http://localhost:8080/api/payroll/calculate_payroll', formData, { headers })
+      .post('http://localhost:9246/api/payroll/calculate_payroll', formData, { headers })
       .then((res) => {
         setPayrollData(res.data);
         message.success('Payroll calculated successfully.');

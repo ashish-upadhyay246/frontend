@@ -22,7 +22,7 @@ const FetchPayrollByEmployeeId = () => {
 
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/payroll/get_payrollByEmployeeId/${employeeId}`,
+        `http://localhost:9246/api/payroll/get_payrollByEmployeeId/${employeeId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`, 

@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import loginimg from "../images/loginimg.png";
 import axios from "axios";
+import applogo from "../images/applogo.png";
+import { Link } from "react-router-dom";
 import { message } from 'antd';
 import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
-import { FaEye, FaEyeSlash } from "react-icons/fa";  
-import { FaArrowLeft } from "react-icons/fa"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {
     let [name, setName] = useState();
     let [password, setPassword] = useState();
     let [role, setRole] = useState();
     let [loading, setLoading] = useState(false);
-    let [showPassword, setShowPassword] = useState(false); 
+    let [showPassword, setShowPassword] = useState(false);
     let nav = useNavigate();
 
     const signup = () => {
         setLoading(true);
         let data = { username: name, password, role };
         axios
-            .post("http://localhost:8080/api/register", data)
+            .post("http://localhost:9246/api/register", data)
             .then(() => {
                 setLoading(false);
                 message.success("Signed up successfully");
@@ -36,7 +38,8 @@ const Signup = () => {
 
     return (
         <>
-        
+
+
             <div className="absolute top-5 left-5 z-50">
                 <button
                     onClick={() => nav("/admin")}
@@ -46,8 +49,12 @@ const Signup = () => {
                 </button>
             </div>
 
-         
+
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10" style={{ backgroundColor: "#C0ECE4" }}>
+                <Link to="/" className="absolute top-6 left-20 ">
+                    <img src={applogo} className="h-8" alt="EasyPay Logo" />
+                
+                </Link>
                 {loading ? (<Spinner />) : (
                     <div className="flex shadow-xl bg-white rounded-2xl p-2">
                         <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white p-8" style={{ width: '24rem', height: '30rem' }}>

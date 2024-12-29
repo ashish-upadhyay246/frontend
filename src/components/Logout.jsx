@@ -16,7 +16,7 @@ const Logout = () => {
         <div className="flex justify-start p-4">
             <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                className={`px-8 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out}`}
             >
                 Logout
             </button>

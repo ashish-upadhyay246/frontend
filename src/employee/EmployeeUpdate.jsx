@@ -25,7 +25,7 @@ const EmployeeUpdate = () => {
 
             try {
                 setLoading(true);
-                const res = await axios.get("http://localhost:8080/api/emp/profile", {
+                const res = await axios.get("http://localhost:9246/api/emp/profile", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -78,7 +78,7 @@ const EmployeeUpdate = () => {
             }
 
             const res = await axios.put(
-                `http://localhost:8080/api/emp/update_info/${empId}`,
+                `http://localhost:9246/api/emp/update_info/${empId}`,
                 formData,
                 {
                     headers: {

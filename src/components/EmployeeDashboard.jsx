@@ -71,8 +71,12 @@ const EmployeeDashboard = () => {
                     >
                         <HiCurrencyDollar className="mr-3 text-xl" /> Get payroll
                     </li>
+
+                    <li className={`px-12 py-3 hover:bg-gray-800 cursor-pointer flex items-center transition-colors duration-200 ease-in-out}`}>
+                        <Logout />
+                    </li>
                 </ul>
-                <Logout />
+                
             </div>
 
 

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { message } from "antd";
+import applogo from "../images/applogo.png";
+import { Link } from "react-router-dom";
 
 const UpdateUser = () => {
     const [username, setUsername] = useState("");
@@ -31,7 +33,7 @@ const UpdateUser = () => {
         try {
             const token = getToken();
             const response = await axios.post(
-                `http://localhost:8080/api/admin_editUsername/${username}/${newUsername}`,
+                `http://localhost:9246/api/admin_editUsername/${username}/${newUsername}`,
                 {},
                 {
                     headers: {
@@ -58,7 +60,7 @@ const UpdateUser = () => {
         try {
             const token = getToken();
             const response = await axios.post(
-                `http://localhost:8080/api/admin_editUserRole/${username}/${role}`,
+                `http://localhost:9246/api/admin_editUserRole/${username}/${role}`,
                 {},
                 {
                     headers: {
@@ -88,7 +90,7 @@ const UpdateUser = () => {
         try {
             const token = getToken();
             const response = await axios.post(
-                `http://localhost:8080/api/admin_editUserPwd/${username}/${password}`,
+                `http://localhost:9246/api/admin_editUserPwd/${username}/${password}`,
                 {},
                 {
                     headers: {
@@ -121,8 +123,10 @@ const UpdateUser = () => {
     };
 
     return (
+        
         <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">Update User Information</h2>
+            
+            <br/><h2 className="text-2xl font-bold mb-4">Update User Information</h2>
             <div className="space-y-6">
                 {/* Username Update Form */}
                 <div>
@@ -175,7 +179,7 @@ const UpdateUser = () => {
                 </div>
 
 
-            
+
                 <div>
                     <h3 className="text-xl font-semibold">Update Password</h3>
                     <div className="mt-2">
@@ -206,7 +210,7 @@ const UpdateUser = () => {
                 </div>
             </div>
 
-         
+
             {errorMessage && <div className="mt-4 text-red-500">{errorMessage}</div>}
             {successMessage && <div className="mt-4 text-green-500">{successMessage}</div>}
         </div>

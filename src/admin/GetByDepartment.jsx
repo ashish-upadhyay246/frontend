@@ -9,10 +9,10 @@ const EmployeeListByDepartment = () => {
 
     
     const departments = [
-        { dept_id: 1, dept_name: "HR" },
-        { dept_id: 2, dept_name: "Finance" },
-        { dept_id: 3, dept_name: "Developer" },
-        { dept_id: 4, dept_name: "IT" },
+        { dept_id: 1, dept_name: "IT" },
+        { dept_id: 2, dept_name: "Developer" },
+        { dept_id: 3, dept_name: "HR" },
+        { dept_id: 4, dept_name: "Finance" },
         { dept_id: 5, dept_name: "Sales" },
     ];
 
@@ -31,7 +31,7 @@ const EmployeeListByDepartment = () => {
         }
 
         axios
-            .get(`http://localhost:8080/api/admin_getEmployeesByDepartment/${departmentId}`, {
+            .get(`http://localhost:9246/api/admin_getEmployeesByDepartment/${departmentId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

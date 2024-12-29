@@ -7,10 +7,10 @@ const ChangeDepartment = () => {
     const [selectedDepartmentId, setSelectedDepartmentId] = useState("");
 
     const departments = [
-        { id: 1, name: "HR" },
-        { id: 2, name: "Finance" },
-        { id: 3, name: "Developer" },
-        { id: 4, name: "IT" },
+        { id: 1, name: "IT" },
+        { id: 2, name: "Developer" },
+        { id: 3, name: "HR" },
+        { id: 4, name: "Finance" },
         { id: 5, name: "Sales" },
     ];
 
@@ -32,7 +32,7 @@ const ChangeDepartment = () => {
 
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/admin_update_department/${employeeId}?departmentId=${selectedDepartmentId}`,
+                `http://localhost:9246/api/admin_update_department/${employeeId}?departmentId=${selectedDepartmentId}`,
                 {},
                 {
                     headers: {
