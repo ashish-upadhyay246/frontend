@@ -93,9 +93,7 @@ const GetAllUserData = () => {
 
     return (
         <div className="overflow-x-auto p-4">
-            <Link to="/" className="absolute top-5 left-50 ">
-                <img src={applogo} className="h-8" alt="EasyPay Logo" /><br />
-            </Link>
+            <h1 style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '30px' }}>Easypay</h1>
             <div className="flex justify-between items-center mb-5">
                 <br /><h2 className="text-2xl font-bold">Users Data</h2>
                 <button

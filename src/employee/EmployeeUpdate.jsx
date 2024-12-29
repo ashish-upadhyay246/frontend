@@ -26,9 +26,7 @@ const EmployeeUpdate = () => {
             try {
                 setLoading(true);
                 const res = await axios.get("http://localhost:9246/api/emp/profile", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 });
 
                 setProfileData(res.data);
@@ -54,10 +52,7 @@ const EmployeeUpdate = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+        setFormData({ ...formData, [name]: value });
     };
 
     const updateEmployeeProfile = async () => {
@@ -80,11 +75,7 @@ const EmployeeUpdate = () => {
             const res = await axios.put(
                 `http://localhost:9246/api/emp/update_info/${empId}`,
                 formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
+                { headers: { Authorization: `Bearer ${token}` } }
             );
 
             setProfileData(res.data);
@@ -99,9 +90,12 @@ const EmployeeUpdate = () => {
     };
 
     return (
+        <div>
+        <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
         <div className="min-h-screen bg-gray-100 py-8 flex flex-col items-center">
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Update Employee Profile</h2>
+            
+                <h2 className="text-3xl font-bold mb-6 text-center">Update Employee Profile</h2>
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
                 {loading ? (
                     <p className="text-center">Loading...</p>
@@ -120,6 +114,7 @@ const EmployeeUpdate = () => {
                     <p className="text-center">No profile data available.</p>
                 )}
             </div>
+        </div>
         </div>
     );
 };

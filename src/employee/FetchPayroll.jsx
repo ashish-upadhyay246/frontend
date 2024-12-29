@@ -65,11 +65,14 @@ const EmployeePayroll = () => {
     };
 
     return (
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+        
         <div className="min-h-screen bg-gray-100 py-8 flex flex-col items-center">
+            
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                    Employee Dashboard
-                </h2>
+        
+            <h2 className="text-3xl font-bold mb-6 text-center">Fetch Payroll</h2>
 
              
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
@@ -125,6 +128,7 @@ const EmployeePayroll = () => {
                     />
                 )}
             </div>
+        </div>
         </div>
     );
 };

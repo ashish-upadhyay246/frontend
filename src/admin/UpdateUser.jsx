@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { message } from "antd";
-import applogo from "../images/applogo.png";
-import { Link } from "react-router-dom";
 
 const UpdateUser = () => {
     const [username, setUsername] = useState("");
@@ -123,96 +121,61 @@ const UpdateUser = () => {
     };
 
     return (
-        
-        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
-            
-            <br/><h2 className="text-2xl font-bold mb-4">Update User Information</h2>
-            <div className="space-y-6">
-                {/* Username Update Form */}
-                <div>
-                    <h3 className="text-xl font-semibold">Update Username</h3>
-                    <div className="flex gap-4 mt-2">
-                        <input
-                            type="text"
-                            placeholder="Enter username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="p-2 border border-gray-300 rounded w-1/2"
-                        />
-                        <input
-                            type="text"
-                            placeholder="Enter new username"
-                            value={newUsername}
-                            onChange={(e) => setNewUsername(e.target.value)}
-                            className="p-2 border border-gray-300 rounded w-1/2"
-                        />
-                    </div>
-                    <button
-                        onClick={handleEditUsername}
-                        className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-                    >
-                        Update Username
-                    </button>
-                </div>
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
 
-                {/* Role Update Form */}
-                <div>
-                    <h3 className="text-xl font-semibold">Update Role</h3>
-                    <div className="mt-2">
-                        <select
-                            value={role}
-                            onChange={(e) => setRole(e.target.value)}
-                            className="p-2 border border-gray-300 rounded w-full"
-                        >
-                            <option value="" disabled>Select a role</option>
-                            <option value="ADMIN">ADMIN</option>
-                            <option value="EMPLOYEE">EMPLOYEE</option>
-                            <option value="PAYROLL_MANAGER">PAYROLL_MANAGER</option>
-                        </select>
+            <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+
+                <br /><center><h2 className="text-2xl font-bold mb-4">Update User Information</h2></center>
+                <div className="space-y-6">
+                    <div>
+                        <h3 className="text-xl font-semibold">Update Username</h3>
+                        <div className="flex gap-4 mt-2">
+                            <input type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} className="p-2 border border-gray-300 rounded w-1/2" />
+                            <input type="text" placeholder="Enter new username" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} className="p-2 border border-gray-300 rounded w-1/2" />
+                        </div>
+                        <center>
+                            <button onClick={handleEditUsername} className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                                Update Username
+                            </button>
+                        </center>
                     </div>
-                    <button
-                        onClick={handleEditRole}
-                        className="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-700"
-                    >
-                        Update Role
-                    </button>
+                    <div>
+                        <h3 className="text-xl font-semibold">Update Role</h3>
+                        <div className="mt-2">
+                            <select value={role} onChange={(e) => setRole(e.target.value)} className="p-2 border border-gray-300 rounded w-full">
+                                <option value="" disabled>Select a role</option>
+                                <option value="ADMIN">ADMIN</option>
+                                <option value="EMPLOYEE">EMPLOYEE</option>
+                                <option value="PAYROLL_MANAGER">PAYROLL_MANAGER</option>
+                            </select>
+                        </div>
+                        <center>
+                            <button onClick={handleEditRole} className="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-700">
+                                Update Role
+                            </button>
+                        </center>
+                    </div>
+                    <div>
+                        <h3 className="text-xl font-semibold">Update Password</h3>
+                        <div className="mt-2">
+                            <input type="password" placeholder="Enter new password" value={password} onChange={(e) => setPassword(e.target.value)} className="p-2 border border-gray-300 rounded w-full" />
+                        </div>
+                        <div className="mt-2">
+                            <input type="password" placeholder="Confirm new password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="p-2 border border-gray-300 rounded w-full" />
+                        </div>
+                        <center>
+                            <button onClick={handleEditPassword} className="mt-4 px-6 py-2 bg-purple-500 text-white rounded hover:bg-purple-700" disabled={loading}>
+                                {loading ? "Updating..." : "Update Password"}
+                            </button>
+                        </center>
+                    </div>
                 </div>
 
 
-
-                <div>
-                    <h3 className="text-xl font-semibold">Update Password</h3>
-                    <div className="mt-2">
-                        <input
-                            type="password"
-                            placeholder="Enter new password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className="p-2 border border-gray-300 rounded w-full"
-                        />
-                    </div>
-                    <div className="mt-2">
-                        <input
-                            type="password"
-                            placeholder="Confirm new password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="p-2 border border-gray-300 rounded w-full"
-                        />
-                    </div>
-                    <button
-                        onClick={handleEditPassword}
-                        className="mt-4 px-6 py-2 bg-purple-500 text-white rounded hover:bg-purple-700"
-                        disabled={loading}
-                    >
-                        {loading ? "Updating..." : "Update Password"}
-                    </button>
-                </div>
+                {errorMessage && <div className="mt-4 text-red-500">{errorMessage}</div>}
+                {successMessage && <div className="mt-4 text-green-500">{successMessage}</div>}
             </div>
-
-
-            {errorMessage && <div className="mt-4 text-red-500">{errorMessage}</div>}
-            {successMessage && <div className="mt-4 text-green-500">{successMessage}</div>}
         </div>
     );
 };

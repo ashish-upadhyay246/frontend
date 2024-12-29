@@ -73,9 +73,7 @@ const GetAllEmployees = () => {
 
     return (
         <div className="overflow-x-auto p-4">
-                        <Link to="/" className="absolute top-5 left-50 ">
-                <img src={applogo} className="h-8" alt="EasyPay Logo" /><br />
-            </Link>
+            <h1 style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '30px' }}>Easypay</h1>
             <div style={{
                 display: "flex",
                 flexDirection: "row",

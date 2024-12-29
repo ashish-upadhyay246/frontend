@@ -47,8 +47,11 @@ const PayrollAuditLogs = () => {
     }
 
     return (
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+        
         <div className="max-w-7xl mx-auto p-6">
-            <h1 className="text-3xl font-semibold mb-4 text-gray-700">Payroll Audit Logs</h1>
+            <center><h1 className="text-3xl font-bold mb-4">Payroll Audit Logs</h1></center>
             <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
                 <table className="min-w-full table-auto">
                     <thead className="bg-gray-100">
@@ -71,6 +74,7 @@ const PayrollAuditLogs = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };

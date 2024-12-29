@@ -5,25 +5,36 @@ import { message } from "antd";
 const UpdateEmployeeSalary = () => {
     const [employeeId, setEmployeeId] = useState("");
     const [newSalary, setNewSalary] = useState("");
-    const [error, setError] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setError("");
+    const getToken = () => {
+        return localStorage.getItem("token");
+    };
+
+    const isTokenValid = () => {
+        const token = getToken();
+        if (!token) {
+            setErrorMessage("You must be logged in to perform this action.");
+            return false;
+        }
+        return true;
+    };
+
+    const handleUpdateSalary = async () => {
+        if (!isTokenValid()) return;
 
         if (!employeeId || !newSalary) {
-            setError("Please fill in all fields.");
+            setErrorMessage("Please fill in all fields.");
             return;
         }
 
-        const token = localStorage.getItem("token");
-        if (!token) {
-            setError("Authentication token is missing. Please log in.");
-            return;
-        }
+        setLoading(true);
 
-        axios
-            .put(
+        try {
+            const token = getToken();
+            const response = await axios.put(
                 `http://localhost:9246/api/admin_updateEmployeeSalary/${employeeId}?newSalary=${newSalary}`,
                 {},
                 {
@@ -31,55 +42,51 @@ const UpdateEmployeeSalary = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 }
-            )
-            .then((res) => {
-                message.success("Salary updated successfully");
-                setEmployeeId("");
-                setNewSalary("");
-            })
-            .catch((err) => {
-                setError("Failed to update salary. Please check the data and try again.");
-            });
+            );
+            setSuccessMessage("Salary updated successfully");
+            setErrorMessage("");
+            setEmployeeId("");
+            setNewSalary("");
+            message.success(response.data);
+        } catch (error) {
+            setErrorMessage(
+                error.response?.data?.message || "Failed to update salary. Please try again."
+            );
+            setSuccessMessage("");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <div className="max-w-lg mx-auto bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-2xl font-bold text-center mb-6">Update Employee Salary</h2>
-
-            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+        
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+            
+            <br />
+            <center>
+                <h2 className="text-2xl font-bold mb-4">Update Employee Salary</h2>
+            </center>
+            <div className="space-y-6">
                 <div>
-                    <label className="block font-medium">Employee ID</label>
-                    <input
-                        type="number"
-                        value={employeeId}
-                        onChange={(e) => setEmployeeId(e.target.value)}
-                        className="w-full p-2 border rounded"
-                        placeholder="Enter Employee ID"
-                        required
-                    />
+                    <h3 className="text-xl font-semibold">Employee Salary Update</h3>
+                    <div className="mt-2">
+                        <input type="number" placeholder="Enter Employee ID" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} className="p-2 border border-gray-300 rounded w-full"/>
+                    </div>
+                    <div className="mt-2">
+                        <input type="number" placeholder="Enter New Salary" value={newSalary} onChange={(e) => setNewSalary(e.target.value)} className="p-2 border border-gray-300 rounded w-full"/>
+                    </div>
+                    <center>
+                    <button onClick={handleUpdateSalary} className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" disabled={loading}>
+                        {loading ? "Updating..." : "Update Salary"}
+                    </button>
+                    </center>
                 </div>
-
-                <div>
-                    <label className="block font-medium">New Salary</label>
-                    <input
-                        type="number"
-                        value={newSalary}
-                        onChange={(e) => setNewSalary(e.target.value)}
-                        className="w-full p-2 border rounded"
-                        placeholder="Enter New Salary"
-                        required
-                    />
-                </div>
-
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600 transition duration-200"
-                >
-                    Update Salary
-                </button>
-            </form>
+            </div>
+            {errorMessage && <div className="mt-4 text-red-500">{errorMessage}</div>}
+            {successMessage && <div className="mt-4 text-green-500">{successMessage}</div>}
+        </div>
         </div>
     );
 };

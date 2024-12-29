@@ -40,8 +40,11 @@ const FetchPayrollByEmployeeId = () => {
   };
 
   return (
+    <div>
+       <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+    
     <div className="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-semibold text-gray-700 mb-4">Fetch Payroll by Employee ID</h2>
+      <h2 className="text-3xl font-bold mb-4 text-center">Fetch Payroll</h2>
 
       
       <div className="mb-4">
@@ -74,6 +77,7 @@ const FetchPayrollByEmployeeId = () => {
         onClose={() => setIsModalOpen(false)}  
         payrollData={selectedPayroll}  
       />
+    </div>
     </div>
   );
 };

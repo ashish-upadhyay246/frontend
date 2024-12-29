@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { message } from "antd";
 
 const ChangeDepartment = () => {
     const [employeeId, setEmployeeId] = useState("");
     const [selectedDepartmentId, setSelectedDepartmentId] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const departments = [
         { id: 1, name: "IT" },
@@ -14,24 +15,22 @@ const ChangeDepartment = () => {
         { id: 5, name: "Sales" },
     ];
 
-    const getToken = () => {
-        return localStorage.getItem("token");
-    };
+    const getToken = () => localStorage.getItem("token");
 
     const handleSubmit = async () => {
         if (!employeeId || !selectedDepartmentId) {
-            alert("Please enter an employee ID and select a department.");
+            setErrorMessage("Please enter an employee ID and select a department.");
             return;
         }
 
         const token = getToken();
         if (!token) {
-            message.error("Authentication token not found. Please log in.");
+            setErrorMessage("Authentication token not found. Please log in.");
             return;
         }
 
         try {
-            const response = await axios.put(
+            axios.put(
                 `http://localhost:9246/api/admin_update_department/${employeeId}?departmentId=${selectedDepartmentId}`,
                 {},
                 {
@@ -40,59 +39,54 @@ const ChangeDepartment = () => {
                     },
                 }
             );
-            message.success("Department updated successfully");
+            setSuccessMessage("Department updated successfully");
+            setErrorMessage("");
             setEmployeeId("");
             setSelectedDepartmentId("");
         } catch (error) {
-            console.error("Error updating department:", error);
-            if (error.response?.status === 403) {
-                message.error("You do not have permission to update the department.");
-            } else {
-                message.error("Error updating department");
-            }
+            setErrorMessage(
+                error.response?.status === 403
+                    ? "You do not have permission to update the department."
+                    : "Error updating department."
+            );
+            setSuccessMessage("");
         }
     };
 
     return (
-        <div className="p-6 bg-gray-100 rounded-md shadow-md w-96 mx-auto mt-10">
-            <h2 className="text-xl font-semibold mb-4">Change Department</h2>
-            <div className="mb-4">
-                <label htmlFor="employeeId" className="block font-medium">
-                    Employee ID:
-                </label>
-                <input
-                    type="number"
-                    id="employeeId"
-                    value={employeeId}
-                    onChange={(e) => setEmployeeId(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    placeholder="Enter Employee ID"
-                />
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+        
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+            <br /><center><h2 className="text-2xl font-bold mb-4">Change Department</h2></center>
+            <div className="space-y-6">
+                <div>
+                    <h3 className="text-xl font-semibold">Update Employee's Department</h3>
+                    <div className="flex flex-col gap-4 mt-2">
+                        <div>
+                            <input type="number" placeholder="Enter Employee ID" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} className="p-2 border border-gray-300 rounded w-full"/>
+                        </div>
+                        <div>
+                            <select value={selectedDepartmentId} onChange={(e) => setSelectedDepartmentId(e.target.value)} className="p-2 border border-gray-300 rounded w-full">
+                                <option value="" disabled>Select a Department</option>
+                                {departments.map((dept) => (
+                                    <option key={dept.id} value={dept.id}>
+                                        {dept.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                    <center>
+                    <button onClick={handleSubmit} className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                        Update Department
+                    </button>
+                    </center>
+                </div>
+                {errorMessage && <div className="mt-4 text-red-500">{errorMessage}</div>}
+                {successMessage && <div className="mt-4 text-green-500">{successMessage}</div>}
             </div>
-            <div className="mb-4">
-                <label htmlFor="department" className="block font-medium">
-                    Department:
-                </label>
-                <select
-                    id="department"
-                    value={selectedDepartmentId}
-                    onChange={(e) => setSelectedDepartmentId(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                >
-                    <option value="">Select a Department</option>
-                    {departments.map((dept) => (
-                        <option key={dept.id} value={dept.id}>
-                            {dept.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <button
-                onClick={handleSubmit}
-                className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
-            >
-                Update Department
-            </button>
+        </div>
         </div>
     );
 };

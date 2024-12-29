@@ -11,12 +11,8 @@ const LeaveRequest = () => {
     const [employeeId, setEmployeeId] = useState("");
 
     const leaveTypes = [
-        "Sick Leave",
-        "Casual Leave",
-        "Earned Leave",
-        "Maternity Leave",
-        "Paternity Leave",
-        "Unpaid Leave",
+        "Sick Leave", "Casual Leave", "Earned Leave", "Maternity Leave", 
+        "Paternity Leave", "Unpaid Leave"
     ];
 
     useEffect(() => {
@@ -30,9 +26,7 @@ const LeaveRequest = () => {
 
             try {
                 const res = await axios.get("http://localhost:9246/api/emp/profile", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
+                    headers: { Authorization: `Bearer ${token}` },
                 });
                 setEmployeeId(res.data.empId);
             } catch (err) {
@@ -53,19 +47,14 @@ const LeaveRequest = () => {
 
         const token = localStorage.getItem("token");
 
-        const leaveRequestData = {
-            leaveType,
-            startDate,
-            endDate,
-            reason,
-        };
+        const leaveRequestData = { leaveType, startDate, endDate, reason };
 
         try {
-            await axios.post(`http://localhost:9246/api/emp/leave_request/${employeeId}`, leaveRequestData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            await axios.post(
+                `http://localhost:9246/api/emp/leave_request/${employeeId}`,
+                leaveRequestData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
 
             setConfirmationMessage("Leave request submitted successfully!");
             setError("");
@@ -81,56 +70,30 @@ const LeaveRequest = () => {
     };
 
     return (
+        <div>
+        <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-            <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">Leave Request Form</h1>
+        
+            <h2 className="text-3xl font-bold mb-6 text-center">Leave Request</h2>
             <div className="space-y-4">
                 <div>
-                    <label htmlFor="leaveType" className="block text-sm font-semibold text-gray-700 mb-2">
-                        Leave Type
-                    </label>
-                    <select
-                        id="leaveType"
-                        value={leaveType}
-                        onChange={(e) => setLeaveType(e.target.value)}
-                        className="w-full p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300"
-                    >
+                    <label htmlFor="leaveType" className="block text-sm font-semibold text-gray-700 mb-2">Leave Type</label>
+                    <select id="leaveType" value={leaveType} onChange={(e) => setLeaveType(e.target.value)} className="w-full p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300">
                         <option value="" disabled>Select a leave type</option>
                         {leaveTypes.map((type, index) => (
-                            <option key={index} value={type}>
-                                {type}
-                            </option>
+                            <option key={index} value={type}>{type}</option>
                         ))}
                     </select>
                 </div>
 
                 <div className="flex gap-4">
-                    <input
-                        type="date"
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                        className="w-1/2 p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300"
-                    />
-                    <input
-                        type="date"
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
-                        className="w-1/2 p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300"
-                    />
+                    <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-1/2 p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300" />
+                    <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-1/2 p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300" />
                 </div>
 
-                <textarea
-                    placeholder="Reason for Leave"
-                    value={reason}
-                    onChange={(e) => setReason(e.target.value)}
-                    className="w-full p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300"
-                    rows="4"
-                ></textarea>
-                <button
-                    onClick={submitLeaveRequest}
-                    className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition"
-                >
-                    Submit Leave Request
-                </button>
+                <textarea placeholder="Reason for Leave" value={reason} onChange={(e) => setReason(e.target.value)} className="w-full p-3 border rounded-lg shadow-sm focus:ring focus:ring-blue-300" rows="4"></textarea>
+
+                <button onClick={submitLeaveRequest} className="w-full bg-blue-500 text-white py-3 rounded-lg shadow-lg hover:bg-blue-600 transition">Submit Leave Request</button>
             </div>
             {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
             {confirmationMessage && (
@@ -138,6 +101,7 @@ const LeaveRequest = () => {
                     <h2 className="text-lg font-bold text-center">{confirmationMessage}</h2>
                 </div>
             )}
+        </div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import UpdatePayroll from '../payroll/UpdatePayroll';
 import FetchPayrollByEmployeeId from '../payroll/FetchPayrollByEmployeeId';
 import HolidayCalendarModal from '../widget/Calendar';
 import PayrollAuditLogs from '../payroll/Audits';
-import { FaCalculator, FaUser, FaEdit, FaCalendarAlt, FaHistory } from 'react-icons/fa';
+import { FaCalculator, FaUser, FaEdit, FaHistory } from 'react-icons/fa';
 import Logout from './Logout';
 import { useLocation } from 'react-router-dom';
 
@@ -35,14 +35,6 @@ const PayrollDashboard = () => {
           <div className="flex items-center">
             <span className="mr-2 text-xl"><FaUser className="text-xl" /></span> {username}
           </div>
-
-          <button
-            onClick={() => setIsCalendarModalOpen(true)}
-            className="text-xl hover:text-blue-400 transition duration-200"
-            aria-label="Open Calendar"
-          >
-            <FaCalendarAlt />
-          </button>
         </div>
         <ul className="mt-6">
 

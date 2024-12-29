@@ -10,7 +10,6 @@ const CalculatePayroll = () => {
   });
   const [payrollData, setPayrollData] = useState(null);
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const token = localStorage.getItem('token');
@@ -42,65 +41,28 @@ const CalculatePayroll = () => {
   };
 
   return (
+    <div>
+      <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+   
     <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-semibold text-gray-700 mb-4 text-center">Calculate Payroll</h2>
-
-     
+      <h2 className="text-3xl font-bold mb-4 text-center">Calculate Payroll</h2>
       <form className="space-y-4">
-        {/* Employee ID Input */}
         <div>
-          <label htmlFor="employeeId" className="block text-sm font-medium text-gray-600">
-            Employee ID
-          </label>
-          <input
-            id="employeeId"
-            name="employeeId"
-            value={formData.employeeId}
-            onChange={handleChange}
-            placeholder="Enter Employee ID"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+          <label htmlFor="employeeId" className="block text-sm font-medium text-gray-600">Employee ID</label>
+          <input id="employeeId" name="employeeId" value={formData.employeeId} onChange={handleChange} placeholder="Enter Employee ID" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-
-        
         <div>
-          <label htmlFor="hoursWorked" className="block text-sm font-medium text-gray-600">
-            Working Hours
-          </label>
-          <input
-            id="hoursWorked"
-            name="hoursWorked"
-            value={formData.hoursWorked}
-            onChange={handleChange}
-            placeholder="Enter Working Hours"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+          <label htmlFor="hoursWorked" className="block text-sm font-medium text-gray-600">Working Hours</label>
+          <input id="hoursWorked" name="hoursWorked" value={formData.hoursWorked} onChange={handleChange} placeholder="Enter Working Hours" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-
         <div>
-          <label htmlFor="payDate" className="block text-sm font-medium text-gray-600">
-            Pay Date
-          </label>
-          <input
-            id="payDate"
-            name="payDate"
-            value={formData.payDate}
-            onChange={handleChange}
-            type="date"
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+          <label htmlFor="payDate" className="block text-sm font-medium text-gray-600">Pay Date</label>
+          <input id="payDate" name="payDate" value={formData.payDate} onChange={handleChange} type="date" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-
-        <button
-          type="button"
-          onClick={handleCalculatePayroll}
-          disabled={isLoading}
-          className={`w-full py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-        >
+        <button type="button" onClick={handleCalculatePayroll} disabled={isLoading} className={`w-full py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}>
           {isLoading ? 'Calculating...' : 'Calculate Payroll'}
         </button>
       </form>
-
       {payrollData && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg w-96">
@@ -137,17 +99,12 @@ const CalculatePayroll = () => {
               <strong>Hours Worked: </strong>
               {payrollData.hoursWorked}
             </div>
-            <button
-              onClick={() => setPayrollData(null)} // Close modal
-              className="mt-4 w-full py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition duration-300"
-            >
-              Close
-            </button>
+            <button onClick={() => setPayrollData(null)} className="mt-4 w-full py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition duration-300">Close</button>
           </div>
         </div>
       )}
-
       {error && <div className="flex justify-center text-red-500 mt-4 mb-4">{error}</div>}
+    </div>
     </div>
   );
 };

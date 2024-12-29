@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import loginimg from "../images/loginimg.png";
 import axios from "axios";
-import applogo from "../images/applogo.png";
-import { Link } from "react-router-dom";
 import { message } from 'antd';
 import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { FaArrowLeft } from "react-icons/fa";
 
 const Signup = () => {
     let [name, setName] = useState();
@@ -41,20 +38,12 @@ const Signup = () => {
 
 
             <div className="absolute top-5 left-5 z-50">
-                <button
-                    onClick={() => nav("/admin")}
-                    className="bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 transition duration-300"
-                >
-                    <FaArrowLeft size={20} />
-                </button>
+                <h1 style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '30px' }}>Easypay</h1>
             </div>
 
 
+
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10" style={{ backgroundColor: "#C0ECE4" }}>
-                <Link to="/" className="absolute top-6 left-20 ">
-                    <img src={applogo} className="h-8" alt="EasyPay Logo" />
-                
-                </Link>
                 {loading ? (<Spinner />) : (
                     <div className="flex shadow-xl bg-white rounded-2xl p-2">
                         <div className="flex flex-wrap content-center justify-center rounded-l-md bg-white p-8" style={{ width: '24rem', height: '30rem' }}>
@@ -63,7 +52,7 @@ const Signup = () => {
 
                                 <form className="mt-4">
                                     <div className="mb-5">
-                                        <label className="mb-2 block text-left text-xm font-semibold">Full name</label>
+                                        <label className="mb-2 block text-left text-xm font-semibold">Username</label>
                                         <input type="text" placeholder="Enter your name" onChange={(e) => setName(e.target.value)} className="block w-full rounded-md border border-gray-300 focus:border-custom-border focus:outline-none focus:ring-1 focus:ring-custom-border py-1 px-1.5 text-gray-500" />
                                     </div>
 

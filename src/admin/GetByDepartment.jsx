@@ -7,7 +7,6 @@ const EmployeeListByDepartment = () => {
     const [employees, setEmployees] = useState([]);
     const [error, setError] = useState("");
 
-    
     const departments = [
         { dept_id: 1, dept_name: "IT" },
         { dept_id: 2, dept_name: "Developer" },
@@ -16,7 +15,6 @@ const EmployeeListByDepartment = () => {
         { dept_id: 5, dept_name: "Sales" },
     ];
 
-   
     const fetchEmployees = () => {
         setError("");
         if (!departmentId) {
@@ -32,9 +30,7 @@ const EmployeeListByDepartment = () => {
 
         axios
             .get(`http://localhost:9246/api/admin_getEmployeesByDepartment/${departmentId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+                headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
                 setEmployees(res.data);
@@ -51,8 +47,13 @@ const EmployeeListByDepartment = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto bg-white shadow-md p-6 rounded-lg">
-            <h2 className="text-2xl font-bold text-center mb-6">Employees by Department</h2>
+        <div>
+            <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
+        
+        <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+            <center>
+                <h2 className="text-2xl font-bold mb-6">Employees by Department</h2>
+            </center>
 
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
@@ -81,27 +82,27 @@ const EmployeeListByDepartment = () => {
                 </div>
             </div>
 
-           
+            {/* Employee Table Section */}
             {employees.length > 0 && (
                 <div>
                     <h3 className="text-lg font-bold mb-4">Employee List</h3>
                     <div className="overflow-x-auto">
                         <table className="min-w-full border-collapse border border-gray-300">
-                            <thead>
+                            <thead className="bg-blue-200">
                                 <tr>
-                                    <th className="border p-2">Employee ID</th>
-                                    <th className="border p-2">Firstname</th>
-                                    <th className="border p-2">Lastname</th>
-                                    <th className="border p-2">Email</th>
+                                    <th className="border p-3">Employee ID</th>
+                                    <th className="border p-3">Firstname</th>
+                                    <th className="border p-3">Lastname</th>
+                                    <th className="border p-3">Email</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {employees.map((employee) => (
                                     <tr key={employee.id}>
-                                        <td className="border p-2 text-center">{employee.empId}</td>
-                                        <td className="border p-2 text-center">{employee.firstName}</td>
-                                        <td className="border p-2 text-center">{employee.lastName}</td>
-                                        <td className="border p-2 text-center">{employee.email}</td>
+                                        <td className="border p-3">{employee.empId}</td>
+                                        <td className="border p-3">{employee.firstName}</td>
+                                        <td className="border p-3">{employee.lastName}</td>
+                                        <td className="border p-3">{employee.email}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -109,6 +110,7 @@ const EmployeeListByDepartment = () => {
                     </div>
                 </div>
             )}
+        </div>
         </div>
     );
 };
