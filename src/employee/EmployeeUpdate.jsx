@@ -106,7 +106,7 @@ const EmployeeUpdate = () => {
                             <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} placeholder="Last Name" className="p-2 border border-gray-300 rounded w-full" />
                             <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Email" className="p-2 border border-gray-300 rounded w-full" />
                             <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleInputChange} placeholder="Phone Number" className="p-2 border border-gray-300 rounded w-full" />
-                            <input type="text" name="salary" value={formData.salary} onChange={handleInputChange} placeholder="Salary" className="p-2 border border-gray-300 rounded w-full" />
+                            
                         </div>
                         <button onClick={updateEmployeeProfile} className="bg-green-500 text-white px-4 py-2 rounded w-full mt-4">Update Profile</button>
                     </div>

@@ -4,9 +4,7 @@ import Spinner from "../components/Spinner";
 import { useNavigate } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import { message, Modal } from "antd";
-import applogo from "../images/applogo.png";
-import { Link } from "react-router-dom";
-import Signup from "../components/Signup";
+
 
 const GetAllUserData = () => {
     const [users, setUsers] = useState([]);

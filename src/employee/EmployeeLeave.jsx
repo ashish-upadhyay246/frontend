@@ -50,7 +50,7 @@ const LeaveRequest = () => {
         const leaveRequestData = { leaveType, startDate, endDate, reason };
 
         try {
-            await axios.post(
+            const response = await axios.post(
                 `http://localhost:9246/api/emp/leave_request/${employeeId}`,
                 leaveRequestData,
                 { headers: { Authorization: `Bearer ${token}` } }
@@ -64,7 +64,13 @@ const LeaveRequest = () => {
             setReason("");
         } catch (err) {
             console.error("Error submitting leave request:", err);
-            setError("Failed to submit leave request. Please try again.");
+
+            // Handle errors by extracting the message from the error object
+            if (err.response && err.response.data && err.response.data.message) {
+                setError(err.response.data.message);  // Show the error message only
+            } else {
+                setError("Failed to submit leave request. Please try again.");
+            }
             setConfirmationMessage("");
         }
     };

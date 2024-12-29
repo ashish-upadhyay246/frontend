@@ -6,6 +6,7 @@ const EmployeeLeaves = () => {
     const [leaves, setLeaves] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [leavesLeft, setLeavesLeft]=useState();
 
     useEffect(() => {
        
@@ -26,6 +27,7 @@ const EmployeeLeaves = () => {
                 });
 
                 const empId = profileRes.data.empId;
+                setLeavesLeft(profileRes.data.leavesLeft);
 
                 if (!empId) {
                     setError("Employee ID not found.");
@@ -60,7 +62,7 @@ const EmployeeLeaves = () => {
             <div className="w-full max-w-3xl bg-white p-6 rounded-lg shadow-lg">
         
             <h2 className="text-3xl font-bold mb-6 text-center">Leave History</h2>
-                <h3 className="px-4 py-2 font-bold text-left">Leaves left for current year: </h3>
+                <h3 className="px-4 py-2 font-bold text-left">Leaves left for current year: {leavesLeft}</h3>
 
 
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
