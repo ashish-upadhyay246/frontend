@@ -55,7 +55,8 @@ const LeaveManagement = () => {
             .then(() => {
                 message.success(`Leave ${approved ? "approved" : "rejected"} successfully`);
             })
-            .catch(() => {
+            .catch((res) => {
+                console.log(res.data)
                 setError("Failed to update leave status. Please try again.");
                 setLeaves((prevLeaves) =>
                     prevLeaves.map((leave) =>

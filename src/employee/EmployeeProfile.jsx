@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { message } from "antd";
 
 const Employee = () => {
     const [profileData, setProfileData] = useState(null);

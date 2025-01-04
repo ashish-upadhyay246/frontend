@@ -4,10 +4,10 @@ import { message } from 'antd';
 
 const CalculatePayroll = () => {
   const [formData, setFormData] = useState({
-    employeeId: '',
     hoursWorked: '',
     payDate: '',
   });
+  const [empId, setEmpId]=useState("")
   const [payrollData, setPayrollData] = useState(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,19 +16,19 @@ const CalculatePayroll = () => {
   const headers = { Authorization: `Bearer ${token}` };
 
   const handleCalculatePayroll = () => {
-    if (!formData.employeeId || !formData.hoursWorked || !formData.payDate) {
+    if (!formData.hoursWorked || !formData.payDate) {
       setError('Please fill in all fields.');
       return;
     }
 
     setIsLoading(true);
     axios
-      .post('http://localhost:9246/api/payroll/calculate_payroll', formData, { headers })
+      .post(`http://localhost:9246/api/payroll/calculate_payroll/${empId}`, formData, { headers })
       .then((res) => {
         setPayrollData(res.data);
         message.success('Payroll calculated successfully.');
         setIsLoading(false);
-        setFormData({ employeeId: '', hoursWorked: '', payDate: '' })
+        setFormData({hoursWorked: '', payDate: '' })
       })
       .catch(() => {
         setError('Error calculating payroll.');
@@ -38,6 +38,8 @@ const CalculatePayroll = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(empId)
+    console.log(formData)
   };
 
   return (
@@ -49,7 +51,7 @@ const CalculatePayroll = () => {
       <form className="space-y-4">
         <div>
           <label htmlFor="employeeId" className="block text-sm font-medium text-gray-600">Employee ID</label>
-          <input id="employeeId" name="employeeId" value={formData.employeeId} onChange={handleChange} placeholder="Enter Employee ID" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+          <input id="employeeId" name="employeeId" value={empId} onChange={(e)=>setEmpId(e.target.value)} placeholder="Enter Employee ID" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
         <div>
           <label htmlFor="hoursWorked" className="block text-sm font-medium text-gray-600">Working Hours</label>

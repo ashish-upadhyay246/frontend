@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import AddEmployee from "./AddEmpDetails";
-import applogo from "../images/applogo.png";
-import { Link } from "react-router-dom";
 import { Modal, Button } from "antd";
 
 const GetAllEmployees = () => {
@@ -79,7 +77,7 @@ const GetAllEmployees = () => {
                 flexDirection: "row",
                 justifyContent: "space-between",
             }}>
-                <br/><h2 className="text-2xl font-bold mb-5">Employees Data</h2>
+                <br /><h2 className="text-2xl font-bold mb-5">Employees Data</h2>
 
                 <Button
                     type="primary"
@@ -105,8 +103,7 @@ const GetAllEmployees = () => {
                 </thead>
                 <tbody>
                     {employees && employees.map && employees.map((employee, index) => {
-                        const department = departments.find(dept => dept.id === employee.departmentId);
-                        console.log(department)
+                        const department = departments.find(dept => dept.id === employee.department.deptId);
                         const departmentName = department ? department.name : "Unknown";
 
                         return (

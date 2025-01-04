@@ -120,23 +120,11 @@ const Login = () => {
                                     >
                                         Sign in
                                     </button>
-
-                                    {/* <button
-                                        type="button"
-                                        className="flex flex-wrap justify-center w-full border border-gray-300 font-semibold hover:border-gray-500 px-2 py-1.5 rounded-md"
-                                    >
-                                        <img
-                                            className="w-6 h-6 mr-2"
-                                            src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
-                                            alt="Google logo"
-                                        />
-                                        Sign in with Google
-                                    </button> */}
                                 </form>
-                                {/* <div className="text-center mt-2">
+                                <div className="text-center mt-2">
                                     <span className="text-xs text-gray-400 font-semibold">Don't have an account?</span>
                                     <Link to="/signup" className="text-xs font-semibold" style={{ color: "#2C44D4" }}> Sign up</Link>
-                                </div> */}
+                                </div>
                             </div>
                         </div>
                         <div className="flex flex-wrap content-center justify-center rounded-r-md" style={{ width: '24rem', height: '26rem' }}>

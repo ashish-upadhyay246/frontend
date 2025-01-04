@@ -29,6 +29,7 @@ const LeaveRequest = () => {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 setEmployeeId(res.data.empId);
+                console.log(employeeId)
             } catch (err) {
                 console.error("Error fetching employee ID:", err);
                 setError("Unable to fetch employee information. Please try again.");

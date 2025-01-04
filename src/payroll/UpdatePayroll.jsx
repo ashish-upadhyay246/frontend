@@ -4,11 +4,9 @@ import axios from 'axios';
 const UpdatePayroll = () => {
   const [formData, setFormData] = useState({
     payrollId: '',
-    employeeId: '',
     basicSalary: '',
     bonuses: '',
     deductions: '',
-    netSalary: '',
     hoursWorked: '',
   });
   const [error, setError] = useState('');
@@ -19,7 +17,7 @@ const UpdatePayroll = () => {
   const headers = { Authorization: `Bearer ${token}` };
 
   const handleUpdatePayroll = () => {
-    if (!formData.payrollId || !formData.employeeId || !formData.hoursWorked) {
+    if (!formData.payrollId || !formData.hoursWorked) {
       setError('Please fill in all the required fields.');
       return;
     }
@@ -33,11 +31,9 @@ const UpdatePayroll = () => {
         setIsLoading(false);
         setFormData({
           payrollId: '',
-          employeeId: '',
           basicSalary: '',
           bonuses: '',
           deductions: '',
-          netSalary: '',
           hoursWorked: '',
         });
       })
@@ -62,10 +58,6 @@ const UpdatePayroll = () => {
             <input name="payrollId" value={formData.payrollId} onChange={handleChange} placeholder="Payroll ID" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
           <div className="col-span-1">
-            <label htmlFor="employeeId" className="block text-sm font-medium text-gray-600">Employee ID</label>
-            <input name="employeeId" value={formData.employeeId} onChange={handleChange} placeholder="Employee ID" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
-          </div>
-          <div className="col-span-1">
             <label htmlFor="hoursWorked" className="block text-sm font-medium text-gray-600">Working Hours</label>
             <input name="hoursWorked" value={formData.hoursWorked} onChange={handleChange} placeholder="Working Hours" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
@@ -76,10 +68,6 @@ const UpdatePayroll = () => {
           <div className="col-span-1">
             <label htmlFor="deductions" className="block text-sm font-medium text-gray-600">Deductions</label>
             <input name="deductions" value={formData.deductions} onChange={handleChange} placeholder="Deductions" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
-          </div>
-          <div className="col-span-1">
-            <label htmlFor="netSalary" className="block text-sm font-medium text-gray-600">Net Salary</label>
-            <input name="netSalary" value={formData.netSalary} onChange={handleChange} placeholder="Net Salary" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
           </div>
           <div className="col-span-1">
             <label htmlFor="basicSalary" className="block text-sm font-medium text-gray-600">Basic Salary</label>

@@ -5,12 +5,10 @@ import GetAllEmployees from '../admin/GetAllEmployees';
 import UpdateUser from '../admin/UpdateUser';
 import UpdateEmployeeSalary from '../admin/UpdateSalary';
 import LeaveManagement from '../admin/Leaves';
-import applogo from "../images/applogo.png";
-import { Link, useNavigate } from "react-router-dom";
 import EmployeeListByDepartment from '../admin/GetByDepartment';
 import HolidayCalendarModal from '../widget/Calendar';
 import { useLocation } from 'react-router-dom';
-import { FaTachometerAlt, FaUsers, FaUserEdit, FaMoneyBillWaveAlt, FaLeaf, FaBuilding, FaUser, FaCalendarAlt } from 'react-icons/fa';
+import { FaTachometerAlt, FaUsers, FaUserEdit, FaMoneyBillWaveAlt, FaLeaf, FaBuilding, FaUser } from 'react-icons/fa';
 import ChangeDepartment from '../admin/ChangeDepartment';
 
 const AdminDashboard = () => {
