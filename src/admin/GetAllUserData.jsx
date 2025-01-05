@@ -17,7 +17,7 @@ const GetAllUserData = () => {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    });
 
     const fetchUsers = () => {
         const token = localStorage.getItem("token");
@@ -133,7 +133,7 @@ const GetAllUserData = () => {
 
             <Modal
                 title="Confirm Deletion"
-                visible={isModalOpen}
+                open={isModalOpen}
                 onOk={handleDelete}
                 onCancel={closeModal}
                 okText="Delete"

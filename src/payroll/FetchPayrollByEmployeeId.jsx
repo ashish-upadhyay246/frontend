@@ -42,41 +42,15 @@ const FetchPayrollByEmployeeId = () => {
   return (
     <div>
        <div><h1 style={{ fontWeight: "bold", fontStyle: "italic", fontSize: "30px" }}>Easypay</h1></div>
-    
     <div className="p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
       <h2 className="text-3xl font-bold mb-4 text-center">Fetch Payroll</h2>
-
-      
       <div className="mb-4">
         <label htmlFor="employeeId" className="block text-gray-600">Employee ID:</label>
-        <input
-          id="employeeId"
-          type="text"
-          value={employeeId}
-          onChange={(e) => setEmployeeId(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-md"
-          placeholder="Enter Employee ID"
-        />
+        <input id="employeeId" type="text" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} className="w-full p-2 border border-gray-300 rounded-md" placeholder="Enter Employee ID"/>
       </div>
-
-     
-      <button
-        onClick={handleFetchPayroll}
-        className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-        disabled={loading}
-      >
-        {loading ? 'Fetching...' : 'Fetch Payroll'}
-      </button>
-
-      
+      <button onClick={handleFetchPayroll} className="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition" disabled={loading}>{loading ? 'Fetching...' : 'Fetch Payroll'}</button>
       {error && <p className="text-red-500 mt-4">{error}</p>}
-
-     
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}  
-        payrollData={selectedPayroll}  
-      />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} payrollData={selectedPayroll}/>
     </div>
     </div>
   );

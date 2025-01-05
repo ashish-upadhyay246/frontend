@@ -72,20 +72,9 @@ const GetAllEmployees = () => {
     return (
         <div className="overflow-x-auto p-4">
             <h1 style={{ fontWeight: 'bold', fontStyle: 'italic', fontSize: '30px' }}>Easypay</h1>
-            <div style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-            }}>
+            <div style={{display: "flex",flexDirection: "row", justifyContent: "space-between"}}>
                 <br /><h2 className="text-2xl font-bold mb-5">Employees Data</h2>
-
-                <Button
-                    type="primary"
-                    onClick={handleModalOpen}
-                    className="mb-4 bg-blue-500 hover:bg-blue-600"
-                >
-                    Add Employee
-                </Button>
+                <Button type="primary" onClick={handleModalOpen} className="mb-4 bg-blue-500 hover:bg-blue-600">Add Employee</Button>
             </div>
 
             <table className="min-w-full table-auto border-collapse">
@@ -124,12 +113,7 @@ const GetAllEmployees = () => {
                 </tbody>
             </table>
 
-            <Modal
-                title="Add Employee"
-                open={isModalOpen}
-                onCancel={handleModalClose}
-                footer={null}
-            >
+            <Modal title="Add Employee" open={isModalOpen} onCancel={handleModalClose} footer={null}>
                 <AddEmployee onEmployeeAdded={handleEmployeeAdded} />
             </Modal>
         </div>
